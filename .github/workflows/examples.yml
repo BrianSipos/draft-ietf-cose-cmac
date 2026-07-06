@@ -21,7 +21,7 @@ jobs:
     - name: Install
       run: pip3 install .[ruff]
     - name: Check with ruff
-      run: ruff check --python ${Python3_ROOT_DIR} .
+      run: ruff check .
 
   build:
     name: Build and test
