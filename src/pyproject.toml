@@ -42,8 +42,8 @@ flake8 = [
   "flake8_pyproject",
   "flake8_formatter_junit_xml",
 ]
-ty = [
-  "ty",
+ruff = [
+  "ruff",
 ]
 
 [tool.pytest.ini_options]

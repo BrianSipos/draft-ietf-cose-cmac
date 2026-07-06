@@ -9,8 +9,8 @@ defaults:
     working-directory: src
 
 jobs:
-  format:
-    name: Check formatting
+  formatting:
+    name: Check formatting and typing
     runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v4
@@ -19,23 +19,9 @@ jobs:
       with:
         python-version: '3.12'
     - name: Install
-      run: pip3 install .[flake8]
-    - name: Lint with flake8
-      run: flake8 . --count --statistics
-
-  typing:
-    name: Check typing
-    runs-on: ubuntu-24.04
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.12'
-    - name: Install
-      run: pip3 install .[ty]
-    - name: Check with ty
-      run: ty check --python ${Python3_ROOT_DIR} .
+      run: pip3 install .[ruff]
+    - name: Check with ruff
+      run: ruff check --python ${Python3_ROOT_DIR} .
 
   build:
     name: Build and test
