@@ -39,5 +39,5 @@ jobs:
     - name: Install
       run: pip3 install -e .[test]
     - name: COSE examples
-      run: python3 -m pytest . --capture=no
+      run: python3 -m pytest . --log-cli-level=info
 
