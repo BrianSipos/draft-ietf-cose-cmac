@@ -1,4 +1,3 @@
-
 from abc import ABC, abstractmethod
 
 from cbor_diag import cbor2diag
@@ -15,9 +14,8 @@ from pycose.exceptions import CoseException, CoseInvalidKey
 
 
 class _CMAC(algorithms.CoseAlgorithm, ABC):
-
     cipher_cls: Optional[Callable[[bytes], BlockCipherAlgorithm]] = None
-    ''' Derived class overrides with block cipher constructor '''
+    """ Derived class overrides with block cipher constructor """
 
     @classmethod
     @abstractmethod
@@ -30,7 +28,7 @@ class _CMAC(algorithms.CoseAlgorithm, ABC):
         raise NotImplementedError()
 
     @classmethod
-    def compute_tag(cls, key: 'SymmetricKey', data: bytes) -> bytes:
+    def compute_tag(cls, key: "SymmetricKey", data: bytes) -> bytes:
         if cls.cipher_cls is None:
             raise CoseException
         if len(key.k) != cls.get_key_length():
@@ -40,11 +38,10 @@ class _CMAC(algorithms.CoseAlgorithm, ABC):
         h.update(data)
         full_tag = h.finalize()
 
-        return full_tag[:cls.get_tag_length()]
+        return full_tag[: cls.get_tag_length()]
 
     @classmethod
-    def verify_tag(cls, key: 'SymmetricKey', tag: bytes, data: bytes) -> bool:
-
+    def verify_tag(cls, key: "SymmetricKey", tag: bytes, data: bytes) -> bool:
         computed_tag = cls.compute_tag(key, data)
 
         if tag == computed_tag:
@@ -55,7 +52,6 @@ class _CMAC(algorithms.CoseAlgorithm, ABC):
 
 @algorithms.CoseAlgorithm.register_attribute()
 class AESCMAC128_96(_CMAC):
-
     identifier = 252
     fullname = "AES_CMAC_128_96"
 
@@ -72,7 +68,6 @@ class AESCMAC128_96(_CMAC):
 
 @algorithms.CoseAlgorithm.register_attribute()
 class AESCMAC256_96(_CMAC):
-
     identifier = 253
     fullname = "AES_CMAC_256_96"
 
@@ -89,7 +84,6 @@ class AESCMAC256_96(_CMAC):
 
 @algorithms.CoseAlgorithm.register_attribute()
 class AESCMAC128_128(_CMAC):
-
     identifier = 254
     fullname = "AES_CMAC_128_128"
 
@@ -106,7 +100,6 @@ class AESCMAC128_128(_CMAC):
 
 @algorithms.CoseAlgorithm.register_attribute()
 class AESCMAC256_128(_CMAC):
-
     identifier = 255
     fullname = "AES_CMAC_256_128"
 
@@ -125,22 +118,21 @@ LOGGER = logging.getLogger(__name__)
 
 
 class TestExample(unittest.TestCase):
-
     def test_CMAC128(self):
         for alg in {AESCMAC128_96, AESCMAC128_128}:
             with self.subTest(str(alg)):
-                LOGGER.info('Using alg %s', alg.fullname)
+                LOGGER.info("Using alg %s", alg.fullname)
                 # Augmented from RFC 9172 example
                 # https://github.com/cose-wg/Examples/blob/master/cbc-mac-examples/cbc-mac-02.json
                 key = SymmetricKey(
-                    k=bytes.fromhex('849B57219DAE48DE646D07DBB533566E'),
+                    k=bytes.fromhex("849B57219DAE48DE646D07DBB533566E"),
                     optional_params={
-                        keyparam.KpKid: b'secret128',
+                        keyparam.KpKid: b"secret128",
                         keyparam.KpAlg: alg,
                         keyparam.KpKeyOps: [keyops.MacCreateOp, keyops.MacVerifyOp],
-                    }
+                    },
                 )
-                LOGGER.info('Key: %s', cbor2diag(key.encode()))
+                LOGGER.info("Key: %s", cbor2diag(key.encode()))
 
                 msg_obj = Mac0Message(
                     phdr={
@@ -149,21 +141,21 @@ class TestExample(unittest.TestCase):
                     uhdr={
                         headers.KID: key.kid,
                     },
-                    payload=b'This is the content.',
+                    payload=b"This is the content.",
                     # Non-encoded parameters
-                    external_aad=b'',
+                    external_aad=b"",
                 )
                 msg_obj.key = key
 
                 # COSE internal structure
                 cose_struct_enc = msg_obj._mac_structure
-                LOGGER.info('COSE Structure: %s', cbor2diag(cose_struct_enc))
-                LOGGER.info('Encoded: %s', cose_struct_enc.hex())
+                LOGGER.info("COSE Structure: %s", cbor2diag(cose_struct_enc))
+                LOGGER.info("Encoded: %s", cose_struct_enc.hex())
 
                 # Encoded message
                 message_enc = msg_obj.encode(tag=True)
-                LOGGER.info('Message: %s', cbor2diag(message_enc))
-                LOGGER.info('Encoded: %s', message_enc.hex())
+                LOGGER.info("Message: %s", cbor2diag(message_enc))
+                LOGGER.info("Encoded: %s", message_enc.hex())
 
                 # Verify from endoded form
                 msg_back = CoseMessage.decode(message_enc)
@@ -176,19 +168,20 @@ class TestExample(unittest.TestCase):
     def test_CMAC256(self):
         for alg in {AESCMAC256_96, AESCMAC256_128}:
             with self.subTest(str(alg)):
-                LOGGER.info('Using alg %s', alg.fullname)
+                LOGGER.info("Using alg %s", alg.fullname)
                 # Augmented from RFC 9172 example
                 # https://github.com/cose-wg/Examples/blob/master/cbc-mac-examples/cbc-mac-04.json
                 key = SymmetricKey(
                     k=bytes.fromhex(
-                        '849B57219DAE48DE646D07DBB533566E976686457C1491BE3A76DCEA6C427188'),
+                        "849B57219DAE48DE646D07DBB533566E976686457C1491BE3A76DCEA6C427188"
+                    ),
                     optional_params={
-                        keyparam.KpKid: b'secret256',
+                        keyparam.KpKid: b"secret256",
                         keyparam.KpAlg: alg,
                         keyparam.KpKeyOps: [keyops.MacCreateOp, keyops.MacVerifyOp],
-                    }
+                    },
                 )
-                LOGGER.info('Key: %s', cbor2diag(key.encode()))
+                LOGGER.info("Key: %s", cbor2diag(key.encode()))
 
                 msg_obj = Mac0Message(
                     phdr={
@@ -197,21 +190,21 @@ class TestExample(unittest.TestCase):
                     uhdr={
                         headers.KID: key.kid,
                     },
-                    payload=b'This is the content.',
+                    payload=b"This is the content.",
                     # Non-encoded parameters
-                    external_aad=b'',
+                    external_aad=b"",
                 )
                 msg_obj.key = key
 
                 # COSE internal structure
                 cose_struct_enc = msg_obj._mac_structure
-                LOGGER.info('COSE Structure: %s', cbor2diag(cose_struct_enc))
-                LOGGER.info('Encoded: %s', cose_struct_enc.hex())
+                LOGGER.info("COSE Structure: %s", cbor2diag(cose_struct_enc))
+                LOGGER.info("Encoded: %s", cose_struct_enc.hex())
 
                 # Encoded message
                 message_enc = msg_obj.encode(tag=True)
-                LOGGER.info('Message: %s', cbor2diag(message_enc))
-                LOGGER.info('Encoded: %s', message_enc.hex())
+                LOGGER.info("Message: %s", cbor2diag(message_enc))
+                LOGGER.info("Encoded: %s", message_enc.hex())
 
                 # Verify from endoded form
                 msg_back = CoseMessage.decode(message_enc)

@@ -27,7 +27,7 @@ dependencies = [
 
 [project.optional-dependencies]
 test = [
-  "cbor2",
+  "cbor2 <6",
   "pytest",
   "pytest-subtests",
   "pytest-cov",
@@ -42,8 +42,8 @@ flake8 = [
   "flake8_pyproject",
   "flake8_formatter_junit_xml",
 ]
-ty = [
-  "ty",
+ruff = [
+  "ruff",
 ]
 
 [tool.pytest.ini_options]

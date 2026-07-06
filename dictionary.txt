@@ -3,6 +3,7 @@ AES
 alg
 BCP
 CBOR
+cmac
 CMAC
 cose
 cryptographic
@@ -24,4 +25,5 @@ pre
 PRF
 pseudorandom
 SHA
+sipos
 TBD
