@@ -27,7 +27,7 @@ dependencies = [
 
 [project.optional-dependencies]
 test = [
-  "cbor2",
+  "cbor2 <6",
   "pytest",
   "pytest-subtests",
   "pytest-cov",
