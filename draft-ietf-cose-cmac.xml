@@ -305,6 +305,7 @@ Note to IANA: The requested COSE algorithm code points are in the positive less-
         <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4494.xml"/>
         <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7942.xml"/>
         <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8126.xml"/>
+        <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8610.xml"/>
         <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.9053.xml"/>
         <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.9864.xml"/>
         <reference anchor="NIST-FIPS-140" target="https://doi.org/10.6028/NIST.FIPS.140-3">
@@ -337,6 +338,86 @@ Note to IANA: The requested COSE algorithm code points are in the positive less-
         </reference>
       </references>
     </references>
+    <section>
+      <name>Examples</name>
+      <t>
+This following subsections include examples of tagged COSE_Mac0 messages using algorithms defined in this document.
+Each of these examples is self-contained, but they are inspired by the examples in <xref section="C" target="RFC9052"/>.
+These examples all use the extended diagnostic notation (EDN) from <xref section="G" target="RFC8610"/>.
+      </t>
+      <section>
+        <name>Example of AES-CMAC 256/96</name>
+        <t>
+This example uses the truncated tag variant of AES-CMAC with the following 256-bit key and an embedded payload identical to the example in <xref section="C.5.1" target="RFC9052"/>.
+        </t>
+        <sourcecode type="cbor"><![CDATA[
+{
+    / kty / 1: 4, / symmetric /
+    / kid / 2: 'ExampleA.1',
+    / alg / 3: 36, / AES-CMAC 256//96 /
+    / ops / 4: [9, 10], / MAC create, MAC verify /
+    / k / -1: h'849b57219dae48de646d07dbb533566e976686457c1491be3a76
+dcea6c427188'
+}
+]]></sourcecode>
+        <t>
+When used with a COSE_Mac0 message, the <tt>MAC_Structure</tt> has the following EDN.
+        </t>
+        <sourcecode type="cbor"><![CDATA[
+[
+    "MAC0", h'a1011824', h'',
+    h'546869732069732074686520636f6e74656e742e'
+]
+]]></sourcecode>
+        <t>
+The full COSE message then has the following EDN.
+        </t>
+        <sourcecode type="cbor"><![CDATA[
+17([
+    << {1: 36} >>,
+    {4: 'ExampleA.1'},
+    h'546869732069732074686520636f6e74656e742e',
+    h'c17c159da967a22e6f44d48d'
+])
+]]></sourcecode>
+      </section>
+      <section>
+        <name>Example of AES-CMAC 256/128</name>
+        <t>
+This example uses the full-length tag variant of AES-CMAC with the following 256-bit key and an embedded payload identical to the example in <xref section="C.5.1" target="RFC9052"/>.
+        </t>
+        <sourcecode type="cbor"><![CDATA[
+{
+    / kty / 1: 4, / symmetric /
+    / kid / 2: 'ExampleA.2',
+    / alg / 3: 38, / AES-CMAC 256//128 /
+    / ops / 4: [9, 10], / MAC create, MAC verify /
+    / k / -1: h'849b57219dae48de646d07dbb533566e976686457c1491be3a76
+dcea6c427188'
+}
+]]></sourcecode>
+        <t>
+When used with a COSE_Mac0 message, the <tt>MAC_Structure</tt> has the following EDN.
+        </t>
+        <sourcecode type="cbor"><![CDATA[
+[
+    "MAC0", h'a1011826', h'',
+    h'546869732069732074686520636f6e74656e742e'
+]
+]]></sourcecode>
+        <t>
+The full COSE message then has the following EDN.
+        </t>
+        <sourcecode type="cbor"><![CDATA[
+17([
+    << {1: 38} >>,
+    {4: 'ExampleA.2'},
+    h'546869732069732074686520636f6e74656e742e',
+    h'a398f12ba754bac41180fbfd21509c42'
+])
+]]></sourcecode>
+      </section>
+    </section>
     <section removeInRFC="true" numbered="false">
       <name>Implementation Status</name>
       <t>
