@@ -316,7 +316,7 @@ Note to IANA: The requested COSE algorithm code points are in the positive less-
             <date month="March" year="2019"/>
           </front>
         </reference>
-        <reference anchor="Ericsson" target="https://emanjon.github.io/NIST-comments/2024%20-%20SP%20800-38B%20and%20800-38C.pdf">
+        <reference anchor="Ericsson" target="https://csrc.nist.gov/csrc/media/Projects/crypto-publication-review-project/documents/initial-comments/sp800-38b-initial-public-comments-2024.pdf">
           <front>
             <title>Comments on SP 800-38B and SP 800-38C</title>
             <author fullname="John Preuß Mattsson">
