@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="info" consensus="true" docName="draft-ietf-cose-cmac-00" ipr="trust200902" submissionType="IETF" sortRefs="true" symRefs="true" tocInclude="true" version="3" xml:lang="en">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="info" consensus="true" docName="draft-ietf-cose-cmac-01" ipr="trust200902" submissionType="IETF" sortRefs="true" symRefs="true" tocInclude="true" version="3" xml:lang="en">
   <front>
     <title abbrev="COSE AES-CMAC">AES-CMAC for COSE</title>
-    <seriesInfo name="Internet-Draft" value="draft-ietf-cose-cmac-00"/>
+    <seriesInfo name="Internet-Draft" value="draft-ietf-cose-cmac-01"/>
     <author fullname="Brian Sipos" initials="B." surname="Sipos">
       <organization abbrev="JHU/APL">The Johns Hopkins University Applied Physics Laboratory</organization>
       <address>
@@ -337,7 +337,7 @@ Note to IANA: The requested COSE algorithm code points are in the positive less-
         </reference>
       </references>
     </references>
-    <section removeInRFC="true" numbered="false">
+    <section anchor="sec-implementation" removeInRFC="true" numbered="false">
       <name>Implementation Status</name>
       <t>
 [NOTE to the RFC Editor: please remove this section before publication, as well as the reference to <xref target="RFC7942"/> and <xref target="github-pycose"/>.]
@@ -369,7 +369,18 @@ Version history of this document:
       </t>
       <dl>
         <dt>-00</dt>
-        <dd>Initial working group draft based on <tt>draft-sipos-cose-cmac-02</tt>.</dd>
+        <dd>
+Initial working group draft based on <tt>draft-sipos-cose-cmac-02</tt>.
+        </dd>
+        <dt>-01</dt>
+        <dd>
+          <ul>
+            <li>Fixed duplicate "TBD3" typo in <xref target="sec-iana-cose"/>.</li>
+            <li>Updated URL for <xref target="Ericsson"/> reference.</li>
+            <li>Added "Implementation Status" and <xref target="github-pycose"/> reference.</li>
+            <li>Added examples appendix.</li>
+          </ul>
+        </dd>
       </dl>
     </section>
   </back>
