@@ -20,7 +20,7 @@ classifiers = [
 ]
 
 dependencies = [
-  "pycose @git+https://github.com/BrianSipos/pycose.git@133-sym-key-limits",
+  "pycose @git+https://github.com/BrianSipos/pycose.git@cmac-algs",
   "cryptography >=41.0",
   "cbor_diag @git+https://github.com/chrysn/cbor-diag-py.git@main",
 ]

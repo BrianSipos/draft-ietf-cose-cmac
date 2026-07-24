@@ -303,6 +303,7 @@ Note to IANA: The requested COSE algorithm code points are in the positive less-
       <references>
         <name>Informative References</name>
         <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4494.xml"/>
+        <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.7942.xml"/>
         <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.8126.xml"/>
         <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.9053.xml"/>
         <xi:include href="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.9864.xml"/>
@@ -325,8 +326,42 @@ Note to IANA: The requested COSE algorithm code points are in the positive less-
             <date day="14" month="September" year="2024"/>
           </front>
         </reference>
+        <reference anchor="github-pycose" target="https://github.com/BrianSipos/pycose/tree/cmac-algs">
+          <front>
+            <title>A Python implementation of the COSE specification (fork)</title>
+            <author fullname="Brian Sipos" initials="B." surname="Sipos">
+              <organization abbrev="JHU/APL">The Johns Hopkins University Applied Physics Laboratory</organization>
+            </author>
+            <date/>
+          </front>
+        </reference>
       </references>
     </references>
+    <section removeInRFC="true" numbered="false">
+      <name>Implementation Status</name>
+      <t>
+[NOTE to the RFC Editor: please remove this section before publication, as well as the reference to <xref target="RFC7942"/> and <xref target="github-pycose"/>.]
+      </t>
+      <t>
+This section records the status of known implementations of the
+protocol defined by this specification at the time of posting of
+this Internet-Draft, and is based on a proposal described in
+<xref target="RFC7942"/>.
+The description of implementations in this section is
+intended to assist the IETF in its decision processes in progressing
+drafts to RFCs. Please note that the listing of any individual
+implementation here does not imply endorsement by the IETF.
+Furthermore, no effort has been spent to verify the information
+presented here that was supplied by IETF contributors. This is not
+intended as, and must not be construed to be, a catalog of available
+implementations or their features. Readers are advised to note that
+other implementations can exist.
+      </t>
+      <t>
+An implementation of the algorithms added by this document is made in a fork of the Pycose library <xref target="github-pycose"/>.
+This implementation was used to produce the examples in this document.
+      </t>
+    </section>
     <section removeInRFC="true" numbered="false">
       <name>Document History</name>
       <t>
