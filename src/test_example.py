@@ -1,115 +1,17 @@
 import logging
 import unittest
-from abc import ABC, abstractmethod
-from collections.abc import Callable
 
 from cbor_diag import cbor2diag
-from cryptography.hazmat.primitives.ciphers import BlockCipherAlgorithm
-from cryptography.hazmat.primitives.ciphers.algorithms import AES128, AES256
-from cryptography.hazmat.primitives.cmac import CMAC
-from pycose import algorithms, headers
-from pycose.exceptions import CoseException, CoseInvalidKey
+from pycose import headers
+from pycose.algorithms import (
+    AESCMAC128_96,
+    AESCMAC128_128,
+    AESCMAC256_96,
+    AESCMAC256_128,
+)
+from pycose.exceptions import CoseException
 from pycose.keys import SymmetricKey, keyops, keyparam
 from pycose.messages import CoseMessage, Mac0Message
-
-
-class _CMAC(algorithms.CoseAlgorithm, ABC):
-    cipher_cls: Callable[[bytes], BlockCipherAlgorithm] | None = None
-    """ Derived class overrides with block cipher constructor """
-
-    @classmethod
-    @abstractmethod
-    def get_key_length(cls) -> int:
-        raise NotImplementedError()
-
-    @classmethod
-    @abstractmethod
-    def get_tag_length(cls) -> int:
-        raise NotImplementedError()
-
-    @classmethod
-    def compute_tag(cls, key: "SymmetricKey", data: bytes) -> bytes:
-        if cls.cipher_cls is None:
-            raise CoseException
-        if len(key.k) != cls.get_key_length():
-            raise CoseInvalidKey
-
-        h = CMAC(cls.cipher_cls(key.k))
-        h.update(data)
-        full_tag = h.finalize()
-
-        return full_tag[: cls.get_tag_length()]
-
-    @classmethod
-    def verify_tag(cls, key: "SymmetricKey", tag: bytes, data: bytes) -> bool:
-        computed_tag = cls.compute_tag(key, data)
-
-        return tag == computed_tag
-
-
-@algorithms.CoseAlgorithm.register_attribute()
-class AESCMAC128_96(_CMAC):
-    identifier = 35
-    fullname = "AES_CMAC_128_96"
-
-    cipher_cls = AES128
-
-    @classmethod
-    def get_key_length(cls) -> int:
-        return 16
-
-    @classmethod
-    def get_tag_length(cls) -> int:
-        return 12
-
-
-@algorithms.CoseAlgorithm.register_attribute()
-class AESCMAC256_96(_CMAC):
-    identifier = 36
-    fullname = "AES_CMAC_256_96"
-
-    cipher_cls = AES256
-
-    @classmethod
-    def get_key_length(cls) -> int:
-        return 32
-
-    @classmethod
-    def get_tag_length(cls) -> int:
-        return 12
-
-
-@algorithms.CoseAlgorithm.register_attribute()
-class AESCMAC128_128(_CMAC):
-    identifier = 37
-    fullname = "AES_CMAC_128_128"
-
-    cipher_cls = AES128
-
-    @classmethod
-    def get_key_length(cls) -> int:
-        return 16
-
-    @classmethod
-    def get_tag_length(cls) -> int:
-        return 16
-
-
-@algorithms.CoseAlgorithm.register_attribute()
-class AESCMAC256_128(_CMAC):
-    identifier = 38
-    fullname = "AES_CMAC_256_128"
-
-    cipher_cls = AES256
-
-    @classmethod
-    def get_key_length(cls) -> int:
-        return 32
-
-    @classmethod
-    def get_tag_length(cls) -> int:
-        return 16
-
 
 LOGGER = logging.getLogger(__name__)
 
