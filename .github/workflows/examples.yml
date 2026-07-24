@@ -20,6 +20,8 @@ jobs:
         python-version: '3.12'
     - name: Install
       run: pip3 install .[ruff]
+    - name: Format with ruff
+      run: ruff format --diff .
     - name: Check with ruff
       run: ruff check .
 
