@@ -186,7 +186,7 @@ A new set of entries have been added to the "COSE Algorithms" registry <xref tar
           <dd>AES-CMAC 128/96</dd>
           <dt>Value:</dt>
           <dd>
-            <cref>TBA1</cref>
+            <cref>TBA1 (suggested 35)</cref>
           </dd>
           <dt>Description:</dt>
           <dd>AES-CMAC with 128-bit key and 96-bit tag</dd>
@@ -204,7 +204,7 @@ A new set of entries have been added to the "COSE Algorithms" registry <xref tar
           <dd>AES-CMAC 256/96</dd>
           <dt>Value:</dt>
           <dd>
-            <cref>TBA2</cref>
+            <cref>TBA2 (suggested 36)</cref>
           </dd>
           <dt>Description:</dt>
           <dd>AES-CMAC with 256-bit key and 96-bit tag</dd>
@@ -222,7 +222,7 @@ A new set of entries have been added to the "COSE Algorithms" registry <xref tar
           <dd>AES-CMAC 128/128</dd>
           <dt>Value:</dt>
           <dd>
-            <cref>TBA3</cref>
+            <cref>TBA3 (suggested 37)</cref>
           </dd>
           <dt>Description:</dt>
           <dd>AES-CMAC with 128-bit key and 128-bit tag</dd>
@@ -240,7 +240,7 @@ A new set of entries have been added to the "COSE Algorithms" registry <xref tar
           <dd>AES-CMAC 256/128</dd>
           <dt>Value:</dt>
           <dd>
-            <cref>TBA3</cref>
+            <cref>TBA4 (suggested 38)</cref>
           </dd>
           <dt>Description:</dt>
           <dd>AES-CMAC with 256-bit key and 128-bit tag</dd>

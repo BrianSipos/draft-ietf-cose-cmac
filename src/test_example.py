@@ -49,7 +49,7 @@ class _CMAC(algorithms.CoseAlgorithm, ABC):
 
 @algorithms.CoseAlgorithm.register_attribute()
 class AESCMAC128_96(_CMAC):
-    identifier = 252
+    identifier = 35
     fullname = "AES_CMAC_128_96"
 
     cipher_cls = AES128
@@ -65,7 +65,7 @@ class AESCMAC128_96(_CMAC):
 
 @algorithms.CoseAlgorithm.register_attribute()
 class AESCMAC256_96(_CMAC):
-    identifier = 253
+    identifier = 36
     fullname = "AES_CMAC_256_96"
 
     cipher_cls = AES256
@@ -81,7 +81,7 @@ class AESCMAC256_96(_CMAC):
 
 @algorithms.CoseAlgorithm.register_attribute()
 class AESCMAC128_128(_CMAC):
-    identifier = 254
+    identifier = 37
     fullname = "AES_CMAC_128_128"
 
     cipher_cls = AES128
@@ -97,7 +97,7 @@ class AESCMAC128_128(_CMAC):
 
 @algorithms.CoseAlgorithm.register_attribute()
 class AESCMAC256_128(_CMAC):
-    identifier = 255
+    identifier = 38
     fullname = "AES_CMAC_256_128"
 
     cipher_cls = AES256
