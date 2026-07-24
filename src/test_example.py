@@ -1,20 +1,20 @@
+import logging
+import unittest
 from abc import ABC, abstractmethod
+from collections.abc import Callable
 
 from cbor_diag import cbor2diag
-import logging
-from typing import Callable, Optional
-import unittest
-from cryptography.hazmat.primitives.cmac import CMAC
 from cryptography.hazmat.primitives.ciphers import BlockCipherAlgorithm
 from cryptography.hazmat.primitives.ciphers.algorithms import AES128, AES256
-from pycose import headers, algorithms
+from cryptography.hazmat.primitives.cmac import CMAC
+from pycose import algorithms, headers
+from pycose.exceptions import CoseException, CoseInvalidKey
 from pycose.keys import SymmetricKey, keyops, keyparam
 from pycose.messages import CoseMessage, Mac0Message
-from pycose.exceptions import CoseException, CoseInvalidKey
 
 
 class _CMAC(algorithms.CoseAlgorithm, ABC):
-    cipher_cls: Optional[Callable[[bytes], BlockCipherAlgorithm]] = None
+    cipher_cls: Callable[[bytes], BlockCipherAlgorithm] | None = None
     """ Derived class overrides with block cipher constructor """
 
     @classmethod
@@ -44,10 +44,7 @@ class _CMAC(algorithms.CoseAlgorithm, ABC):
     def verify_tag(cls, key: "SymmetricKey", tag: bytes, data: bytes) -> bool:
         computed_tag = cls.compute_tag(key, data)
 
-        if tag == computed_tag:
-            return True
-        else:
-            return False
+        return tag == computed_tag
 
 
 @algorithms.CoseAlgorithm.register_attribute()
