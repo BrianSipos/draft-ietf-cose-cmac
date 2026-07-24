@@ -358,7 +358,7 @@ implementations or their features. Readers are advised to note that
 other implementations can exist.
       </t>
       <t>
-An implementation of the algorithms added by this document is made in a fork of the Pycose library <xref target="github-pycose"/>.
+An implementation of the algorithms added by this document is made in a fork of the <tt>pycose</tt> library <xref target="github-pycose"/>.
 This implementation was used to produce the examples in this document.
       </t>
     </section>
