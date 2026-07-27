@@ -8,6 +8,7 @@ CMAC
 cose
 cryptographic
 Cryptographic
+EDN
 Ericsson
 FIPS
 GCM

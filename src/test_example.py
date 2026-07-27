@@ -21,7 +21,7 @@ class TestExample(unittest.TestCase):
         for alg in {AESCMAC128_96, AESCMAC128_128}:
             with self.subTest(str(alg)):
                 LOGGER.info("Using alg %s", alg.fullname)
-                # Augmented from RFC 9172 example
+                # Augmented from RFC 9052 example
                 # https://github.com/cose-wg/Examples/blob/master/cbc-mac-examples/cbc-mac-02.json
                 key = SymmetricKey(
                     k=bytes.fromhex("849B57219DAE48DE646D07DBB533566E"),
@@ -68,7 +68,7 @@ class TestExample(unittest.TestCase):
         for alg in {AESCMAC256_96, AESCMAC256_128}:
             with self.subTest(str(alg)):
                 LOGGER.info("Using alg %s", alg.fullname)
-                # Augmented from RFC 9172 example
+                # Augmented from RFC 9052 example
                 # https://github.com/cose-wg/Examples/blob/master/cbc-mac-examples/cbc-mac-04.json
                 key = SymmetricKey(
                     k=bytes.fromhex(
