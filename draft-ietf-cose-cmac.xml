@@ -253,9 +253,6 @@ A new set of entries have been added to the "COSE Algorithms" registry <xref tar
           <dt>Recommended:</dt>
           <dd>Yes</dd>
         </dl>
-        <t><cref>
-Note to IANA: The requested COSE algorithm code points are in the positive less-than-256 range.
-        </cref></t>
       </section>
     </section>
   </middle>
@@ -345,6 +342,9 @@ This following subsections include examples of tagged COSE_Mac0 messages using a
 Each of these examples is self-contained, but they are inspired by the examples in <xref section="C" target="RFC9052"/>.
 These examples all use the extended diagnostic notation (EDN) from <xref section="G" target="RFC8610"/>.
       </t>
+      <t><cref>
+NOTE to the RFC Editor: These examples use algorithm code points suggested in <xref target="sec-iana-cose"/> but not yet allocated.
+      </cref></t>
       <section>
         <name>Example of AES-CMAC 256/96</name>
         <t>
@@ -370,7 +370,7 @@ When used with a COSE_Mac0 message, the <tt>MAC_Structure</tt> has the following
 ]
 ]]></sourcecode>
         <t>
-The full COSE message then has the following EDN.
+The full COSE_Mac0 message thus has the following EDN.
         </t>
         <sourcecode type="cbor"><![CDATA[
 17([
@@ -406,7 +406,7 @@ When used with a COSE_Mac0 message, the <tt>MAC_Structure</tt> has the following
 ]
 ]]></sourcecode>
         <t>
-The full COSE message then has the following EDN.
+The full COSE_Mac0 message thus has the following EDN.
         </t>
         <sourcecode type="cbor"><![CDATA[
 17([
