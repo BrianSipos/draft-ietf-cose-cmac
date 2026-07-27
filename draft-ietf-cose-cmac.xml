@@ -481,7 +481,7 @@ Initial working group draft based on <tt>draft-sipos-cose-cmac-02</tt>.
         <dt>-01</dt>
         <dd>
           <ul>
-            <li>Fixed duplicate "TBD3" typo in <xref target="sec-iana-cose"/>.</li>
+            <li>Fixed duplicate "TBA3" typo in <xref target="sec-iana-cose"/>.</li>
             <li>Updated URL for <xref target="Ericsson"/> reference.</li>
             <li>Added "Implementation Status" and <xref target="github-pycose"/> reference.</li>
             <li>Added examples appendix.</li>
