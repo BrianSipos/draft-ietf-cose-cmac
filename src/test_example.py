@@ -1,6 +1,6 @@
 import logging
-from typing import cast
 import unittest
+from typing import cast
 
 from cbor_diag import cbor2diag
 from pycose import headers
