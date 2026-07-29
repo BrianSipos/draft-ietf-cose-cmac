@@ -14,16 +14,22 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v6
+    - name: Install Rust cache
+      uses: actions-rust-lang/setup-rust-toolchain@v1
+      with:
+        toolchain: stable
     - name: Set up Python
       uses: actions/setup-python@v6
       with:
         python-version: '3.12'
     - name: Install
-      run: pip3 install .[ruff]
+      run: pip3 install -e .[ruff]
     - name: Format with ruff
       run: ruff format --diff .
     - name: Check with ruff
       run: ruff check .
+    - name: Check with ty
+      run: ty check .
 
   build:
     name: Build and test
@@ -34,6 +40,10 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v6
+    - name: Install Rust cache
+      uses: actions-rust-lang/setup-rust-toolchain@v1
+      with:
+        toolchain: stable
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v6
       with:
