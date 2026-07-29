@@ -8,7 +8,7 @@ from pycose.algorithms import (
     AESCMAC128_128,
     AESCMAC256_96,
     AESCMAC256_128,
-    DirectHKDFSHA512
+    DirectHKDFSHA512,
 )
 from pycose.exceptions import CoseException
 from pycose.keys import SymmetricKey, keyops, keyparam
@@ -140,7 +140,7 @@ class TestExample(unittest.TestCase):
                     },
                     uhdr={
                         headers.KID: kdk.kid,
-                        headers.Salt: bytes.fromhex('673b4e76'),
+                        headers.Salt: bytes.fromhex("673b4e76"),
                     },
                 )
             ],
