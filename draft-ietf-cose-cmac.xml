@@ -411,7 +411,7 @@ f992f132d6a3cb8a'
 ]
 ]]></sourcecode>
         <t>
-When used with a COSE_Mac0 message, the <tt>MAC_Structure</tt> has the following EDN.
+When used with a COSE_Mac message, the <tt>MAC_Structure</tt> has the following EDN.
         </t>
         <sourcecode type="cbor"><![CDATA[
 [
@@ -420,7 +420,13 @@ When used with a COSE_Mac0 message, the <tt>MAC_Structure</tt> has the following
 ]
 ]]></sourcecode>
         <t>
-The full COSE_Mac0 message thus has the following EDN.
+The content key is derived from a <tt>COSE_KDF_Context</tt> with the following EDN.
+        </t>
+        <sourcecode type="cbor"><![CDATA[
+[38, [null, null, null], [null, null, null], [256, h'a1012a']]
+]]></sourcecode>
+        <t>
+The full COSE_Mac message thus has the following EDN.
         </t>
         <sourcecode type="cbor"><![CDATA[
 97([

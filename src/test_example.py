@@ -159,6 +159,9 @@ class TestExample(unittest.TestCase):
         LOGGER.info("Message: %s", cbor2diag(message_enc))
         LOGGER.info("Encoded: %s", message_enc.hex())
 
+        kdf_context_enc = msg_obj.recipients[0].get_kdf_context(msg_obj.get_attr(headers.Algorithm)).encode()
+        LOGGER.info("KDF Context: %s", cbor2diag(kdf_context_enc))
+        LOGGER.info("Encoded: %s", kdf_context_enc.hex())
         LOGGER.info("Content key: %s", cbor2diag(msg_obj.key.encode()))
 
         # Verify from endoded form

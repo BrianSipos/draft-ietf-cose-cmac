@@ -43,7 +43,8 @@ flake8 = [
   "flake8_formatter_junit_xml",
 ]
 ruff = [
-  "ruff ~=0.16",
+  "ruff ~=0.16.0",
+  "ty ~=0.0.65",
 ]
 
 [tool.pytest.ini_options]
