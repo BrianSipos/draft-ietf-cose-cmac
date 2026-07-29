@@ -131,9 +131,10 @@ class TestExample(unittest.TestCase):
         )
         LOGGER.info("KDK: %s", cbor2diag(kdk.encode()))
 
+        alg = AESCMAC256_128
         msg_obj = MacMessage(
             phdr={
-                headers.Algorithm: AESCMAC256_128,
+                headers.Algorithm: alg,
             },
             payload=b"This is the content.",
             recipients=[
@@ -165,7 +166,7 @@ class TestExample(unittest.TestCase):
 
         kdf_context_enc = (
             msg_obj.recipients[0]
-            .get_kdf_context(msg_obj.get_attr(headers.Algorithm))
+            .get_kdf_context(alg)
             .encode()
         )
         LOGGER.info("KDF Context: %s", cbor2diag(kdf_context_enc))
