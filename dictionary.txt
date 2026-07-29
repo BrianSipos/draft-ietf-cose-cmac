@@ -20,6 +20,7 @@ IETF
 IPsec
 jose
 KDF
+KDK
 kty
 NIST
 pre

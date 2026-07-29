@@ -389,7 +389,7 @@ The full COSE_Mac0 message thus has the following EDN.
         <name>Example of AES-CMAC 256/128</name>
         <t>
 This example uses the full-length tag variant of AES-CMAC with the following 256-bit key-derivation key (KDK) and a detached payload identical to the example in <xref section="C.5.1" target="RFC9052"/>.
-Using a KDK with a determinstic salt enables the content key to be single-use and satisfy the maximum effective tag length as described in <xref target="sec-security-overuse"/>.
+Using a KDK with a deterministic salt enables the content key to be single-use and satisfy the maximum effective tag length as described in <xref target="sec-security-overuse"/>.
         </t>
         <sourcecode type="cbor"><![CDATA[
 [
