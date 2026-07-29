@@ -1,6 +1,8 @@
 /build/
+/.venv/
 
 *~
 .*project
 *.pyc
 .pytest_cache/
+*.egg-info/

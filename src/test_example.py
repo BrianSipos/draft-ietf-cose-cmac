@@ -1,4 +1,5 @@
 import logging
+from typing import cast
 import unittest
 
 from cbor_diag import cbor2diag
@@ -61,6 +62,7 @@ class TestExample(unittest.TestCase):
                 # Verify from endoded form
                 msg_back = CoseMessage.decode(message_enc)
                 self.assertIsInstance(msg_back, Mac0Message)
+                msg_back = cast(Mac0Message, msg_back)
                 with self.assertRaises(CoseException):
                     msg_back.verify_tag()
                 msg_back.key = key
@@ -110,6 +112,7 @@ class TestExample(unittest.TestCase):
                 # Verify from endoded form
                 msg_back = CoseMessage.decode(message_enc)
                 self.assertIsInstance(msg_back, Mac0Message)
+                msg_back = cast(Mac0Message, msg_back)
                 with self.assertRaises(CoseException):
                     msg_back.verify_tag()
                 msg_back.key = key
@@ -147,6 +150,7 @@ class TestExample(unittest.TestCase):
             # Non-encoded parameters
             external_aad=b"",
         )
+        self.assertIsInstance(msg_obj.recipients, list)
         msg_obj.recipients[0].key = kdk
 
         # COSE internal structure
@@ -171,6 +175,7 @@ class TestExample(unittest.TestCase):
         # Verify from endoded form
         msg_back = CoseMessage.decode(message_enc)
         self.assertIsInstance(msg_back, MacMessage)
+        msg_back = cast(MacMessage, msg_back)
         self.assertEqual(1, len(msg_back.recipients))
         recip = msg_back.recipients[0]
         with self.assertRaises(AttributeError):
